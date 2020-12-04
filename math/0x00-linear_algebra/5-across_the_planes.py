@@ -10,5 +10,8 @@ def add_matrices2D(mat1, mat2):
     else:
         new_array = []
         for item in range(len(mat1)):
-            new_array.append(mat1[item] + mat2[item])
-    return new_array
+            column = []
+            for col in range(len(mat1[0])):
+                column.append(mat1[item][col] + mat2[item][col])
+            new_array.append(column)
+        return new_array
