@@ -1,4 +1,4 @@
-#!/usr/bin/ env python3
+#!/usr/bin/env python3
 """ calculates the integral  of a polynomial """
 
 
@@ -10,6 +10,8 @@ def poly_integral(poly, C=0):
     i = 0
     for coef in poly:
         item = poly[i] / (i + 1)
+        if type(item) is not float:
+            item = int(item)
         integral.append(item)
         i += 1
     return integral
