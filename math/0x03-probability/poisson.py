@@ -4,6 +4,8 @@
 
 class Poisson:
     """ class that represents a Poisson distribution """
+    e = 2.7182818285
+
     def __init__(self, data=None, lambtha=1.):
         """
         Class constructor that initializes the class Poisson
@@ -47,3 +49,20 @@ class Poisson:
 
         pmf = pow(e, -self.lambtha) * pow(self.lambtha, k) / k_factorial
         return pmf
+
+    def cdf(self, k):
+        """ method that calculates the CDF value for a # of successes
+        Parameters:
+        k: number of successes
+        Return:
+        cdf value for k
+        """
+        if k <= 0:
+            return 0
+
+        k = int(k)
+        e = 2.7182818285
+        cdf = 0
+        for i in range(1, k + 1):
+            cdf += self.pmf(i)
+        return cdf
