@@ -43,16 +43,3 @@ class Normal:
         Returns the x-value of z
         """
         return self.mean + (self.stddev * z)
-
-    def pdf(self, x):
-        """
-        Instance method which calculates the pdf for a given x-value
-        x is the x-value
-        Returns the PDF value for x
-        """
-        pi = 3.1415926536
-        e = 2.7182818285
-        variance = pow(self.stddev, 2)
-        pdf = pow(e, -pow(x - self.mean, 2) / (
-            2 * variance)) / (self.stddev * pow(2 * pi, 1/2)
-        return pdf
