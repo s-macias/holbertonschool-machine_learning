@@ -15,8 +15,9 @@ class Poisson:
         Return:
         the lambtha of data if data is given
         Errors:
-        ValueError: raised If lambtha is not a positive value or equals to 0
-        TypeError: raised If data is not a list
+        ValueError: raised if lambtha is not a positive value or equals to 0
+        or if number of elements in data is less than 2
+        TypeError: raised if data is not a list
         """
         if data is None and lambtha <= 0:
             raise ValueError("lambtha must be a positive value")
@@ -26,8 +27,6 @@ class Poisson:
             raise TypeError("data must be a list")
         elif data and len(data) < 2:
             raise ValueError("data must contain multiple values")
-        elif len(data) == 0:
-            raise ZeroDivisionError("data must contain multiple values")
         else:
             self.lambtha = float(sum(data) / len(data))
 
@@ -39,12 +38,11 @@ class Poisson:
         Return:
         pmf value for k
         """
-        if k <= 0:
+        if k < 0:
             return 0
 
         k = int(k)
         e = 2.7182818285
-
         k_factorial = 1
         for i in range(1, k + 1):
             k_factorial *= i
@@ -65,6 +63,6 @@ class Poisson:
         k = int(k)
         e = 2.7182818285
         cdf = 0
-        for i in range(1, k + 1):
+        for i in range(k + 1):
             cdf += self.pmf(i)
         return cdf
