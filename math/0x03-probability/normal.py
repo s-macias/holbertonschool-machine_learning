@@ -61,3 +61,19 @@ class Normal:
         pdf_normal = pow(e, exp) / denom
 
         return pdf_normal
+
+    def cdf(self, x):
+        """
+        Instance method which calculates the Cumulative Distribution
+        Function for an x-given value
+        Calculated using the error function which is calculated as a
+        Maclaurin series
+        Args:
+            x ([int]): x-value for which the CDF will be calculated
+        Return: CDF for x value
+        """
+        pi = 3.1415926536
+        z = (x - self.mean) / (self.stddev * pow(2, 1 / 2))
+        erf = pow(z, 3) / 3 + pow(z, 5) / 10 - pow(z, 7) / 42 + pow(z, 9) / 216
+        cdf = (1 + 2 / pow(pi, 1/2) * erf) / 2
+        return cdf
