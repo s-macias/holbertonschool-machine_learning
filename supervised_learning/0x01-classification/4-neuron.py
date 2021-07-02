@@ -97,6 +97,6 @@ class Neuron:
         The label values should be 1 if the output of the network
         is >= 0.5 and 0 otherwise
         """
-        A = np.self.forward_prop(x)
+        A = self.forward_prop(X)
         a = np.where(A < 0.5, 0, 1)
         return A, self.cost(Y, A)
