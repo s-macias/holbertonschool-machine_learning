@@ -122,12 +122,6 @@ class NeuralNetwork:
         The label values should be 1 if the output of the network is >= 0.5
         and 0 otherwise
         """
-<<<<<<< HEAD
         A1, A2 = self.forward_prop(X)
         a = np.where(A2 < 0.5, 0, 1)
         return a, self.cost(Y, A2)
-=======
-        A = self.forward_prop(X)[1]
-        prediction = np.where(A >= 0.5, 1, 0)
-        return prediction, self.cost(Y, A)
->>>>>>> 9a46be82dc887d92231b8e384ad3d22139dd6dde
