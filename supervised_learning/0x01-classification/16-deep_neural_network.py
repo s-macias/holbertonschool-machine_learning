@@ -36,6 +36,8 @@ class DeepNeuralNetwork:
         self.L = len(layers)
         self.cache = {}
         self.weights = {}
+        print("Number of nodes in each layer: ", layers)
+        print("number of features: ", nx)
 
         for layer in range(len(layers)):
             if type(layers[layer]) is not int or layers[layer] <= 0:
@@ -45,10 +47,10 @@ class DeepNeuralNetwork:
                     "b" + str(layer)] = np.zeros((layers[layer], 1))
                 if layer == 0:
                     self.weights[
-                        "W" + str(layer)] = np.random.randn(
+                        "W" + str(layer + 1)] = np.random.randn(
                             layers[layer], nx) * np.sqrt(2/nx)
                 else:
                     self.weights[
-                        "W" + str(layer)] = np.random.randn(
+                        "W" + str(layer + 1)] = np.random.randn(
                             layers[layer], layers[layer - 1]) * np.sqrt(
                                 2 / layers[layer - 1])
