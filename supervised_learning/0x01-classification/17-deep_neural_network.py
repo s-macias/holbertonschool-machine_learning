@@ -36,8 +36,6 @@ class DeepNeuralNetwork:
         self.__L = len(layers)
         self.__cache = {}
         self.__weights = {}
-        print("Number of nodes in each layer: ", layers)
-        print("number of features: ", nx)
 
         for layer in range(len(layers)):
             if type(layers[layer]) is not int or layers[layer] <= 0:
