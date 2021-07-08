@@ -44,7 +44,7 @@ class DeepNeuralNetwork:
                 raise TypeError("layers must be a list of positive integers")
             else:
                 self.weights[
-                    "b" + str(layer)] = np.zeros((layers[layer], 1))
+                    "b" + str(layer + 1)] = np.zeros((layers[layer], 1))
                 if layer == 0:
                     self.weights[
                         "W" + str(layer + 1)] = np.random.randn(
