@@ -9,4 +9,5 @@ if __name__ == '__main__':
     mean, cov = mean_cov(X)
     print(mean)
     print(cov)
+
     
