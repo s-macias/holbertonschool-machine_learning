@@ -13,9 +13,11 @@ def pca(X, var=0.95):
         var (float, optional): fraction of the variance that the PCA
         transformation should maintain. Defaults to 0.95.
     Returns:
-    W (numpy.ndarray): array of shape (d, nd) where nd is the new 
+    W (numpy.ndarray): array of shape (d, nd) where nd is the new
     dimensionality of the transformed X. The weights matrix, W,
     that maintains var fraction of X‘s original variance
     """
-    # Substract the mean
-    
+    U, S, V = np.linalg.svd(X)
+    variance = np.cumsum(S) / np.sum(S)
+    dimensions = np.argwhere(variance >= var)[0,0]
+    return V[:dimensions + 1].T
