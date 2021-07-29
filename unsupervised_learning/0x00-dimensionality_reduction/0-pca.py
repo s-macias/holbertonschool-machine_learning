@@ -19,5 +19,5 @@ def pca(X, var=0.95):
     """
     U, S, V = np.linalg.svd(X)
     variance = np.cumsum(S) / np.sum(S)
-    dimensions = np.argwhere(variance >= var)[0,0]
+    dimensions = np.argwhere(variance >= var)[0, 0]
     return V[:dimensions + 1].T
