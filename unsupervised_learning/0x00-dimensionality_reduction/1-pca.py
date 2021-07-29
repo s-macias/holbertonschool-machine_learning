@@ -3,19 +3,20 @@
 import numpy as np
 
 
-def pca(X, var=0.95):
+def pca(X, ndim):
     """ Function that performs PCA on a dataset
 
     Args:
         X (numpy.ndarray): array of shape (n, d) where
             n is the number of data points
             d is the number of dimensions of each point
-        var (float, optional): fraction of the variance that the PCA
-        transformation should maintain. Defaults to 0.95.
+        ndim : new dimensionality of the transformed X
     Returns:
-    W (numpy.ndarray): array of shape (d, nd) where nd is the new 
-    dimensionality of the transformed X. The weights matrix, W,
-    that maintains var fraction of X‘s original variance
+    T (numpy.ndarray): array of shape (d, ndim) where nd is the new
+    dimensionality of the transformed X.
     """
-    # Substract the mean
-    
+    X_centered = X - X.mean(axis=0)
+    U, S, V = np.linalg.svd(X_centered)
+    W = V[:ndim].T
+    T = np.matmul(X_centered, W)
+    return T
