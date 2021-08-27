@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-module to create autoencoder function
+module to create sparse autoencoder function
 """
 import tensorflow.keras as keras
 
 
-def autoencoder(input_dims, hidden_layers, latent_dims):
+def autoencoder(input_dims, hidden_layers, latent_dims, lambtha):
     """
-    Function to create an autoencoder
+    Function to create a sparse autoencoder
     Arguments:
     - input_dims is an integer containing the dimensions of the model input
     - hidden_layers is a list containing the number of nodes for each hidden
@@ -19,6 +19,8 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     - encoder is the encoder model
     - decoder is the decoder model
     - auto is the full autoencoder model
+    - lambtha is the regularization parameter used for L1 regularization on the
+        encoded output
     The autoencoder model should be compiled using adam optimization and binary
     cross-entropy loss
     All layers should use a relu activation except for the last layer in the
@@ -31,8 +33,9 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     for layer in range(1, len(hidden_layers)):
         encoded = keras.layers.Dense(hidden_layers[layer], activation='relu')(
             encoded)
-
-    encoder_out = keras.layers.Dense(latent_dims, activation='relu')(encoded)
+    regularizer = keras.regularizers.l1(lambtha)
+    encoder_out = keras.layers.Dense(latent_dims, activation='relu',
+                                     activity_regularizer=regularizer)(encoded)
     input_decoder = keras.layers.Input(shape=(latent_dims,))
     decoded = input_decoder
     for layer in range(len(hidden_layers) - 1, - 1, - 1):
