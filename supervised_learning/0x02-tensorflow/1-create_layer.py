@@ -2,8 +2,7 @@
 """ Module to create the create_layer function """
 
 import tensorflow as tf
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior() 
+
 
 def create_layer(prev, n, activation):
     """
@@ -18,21 +17,8 @@ def create_layer(prev, n, activation):
     Returns:
     the tensor output of the layer
     """
-
-
     init = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
-    layer = tf.layers.Dense(units=n,
-    activation=activation,
-    use_bias=True,
-    kernel_initializer=init,
-    kernel_regularizer=None,
-    bias_regularizer=None,
-    activity_regularizer=None,
-    kernel_constraint=None,
-    bias_constraint=None,
-    trainable=True,
-    name='layer')
+    layer = tf.layers.Dense(units=n, activation=activation, use_bias=True,
+                            kernel_initializer=init, name='layer')
 
-    output = type(layer)
-
-    return output
+    return layer(prev)
