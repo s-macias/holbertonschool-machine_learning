@@ -2,6 +2,7 @@
 """ Module with function forward_prop """
 
 import tensorflow as tf
+create_layer = __import__('1-create_layer').create_layer
 
 
 def forward_prop(x, layer_sizes=[], activations=[]):
@@ -18,8 +19,6 @@ def forward_prop(x, layer_sizes=[], activations=[]):
     For this function, you should import your create_layer function with
     create_layer = __import__('1-create_layer').create_layer
     """
-
-    create_layer = __import__('1-create_layer').create_layer
     n_layers = len(layer_sizes)
 
     output = create_layer(x, layer_sizes[0], activations[0])
