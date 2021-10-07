@@ -15,4 +15,4 @@ def calculate_accuracy(y, y_pred):
     hint: accuracy = correct_predictions / all_predictions
     """
     correct_predictions = tf.equal(tf.argmax(y, 1), tf.argmax(y_pred, 1))
-    return tf.reduce_mean(tf.cast(correct_prediction, 'float32'))
+    return tf.reduce_mean(tf.cast(correct_predictions, 'float32'))
