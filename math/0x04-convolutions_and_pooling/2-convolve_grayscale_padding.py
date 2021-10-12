@@ -3,6 +3,7 @@
 
 import numpy as np
 
+
 def convolve_grayscale_padding(images, kernel, padding):
     """
     Function that performs a convolution on grayscale
@@ -39,5 +40,5 @@ def convolve_grayscale_padding(images, kernel, padding):
         for j in range(w_out):
             conv_images[:, i, j] = np.sum(np.multiply(
                 pad_images[:, i: i + kh, j: j + kw], kernel), axis=(1, 2))
-    
+
     return conv_images
