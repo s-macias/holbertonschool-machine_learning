@@ -5,7 +5,7 @@ import numpy as np
 from math import ceil, floor
 
 
-def convolve_grayscale_valid(images, kernel): 
+def convolve_grayscale_valid(images, kernel):
     """
     Function that performs a valid convolution on grayscale images.
     Arguments:
@@ -28,12 +28,12 @@ def convolve_grayscale_valid(images, kernel):
     kh, kw = kernel.shape[0], kernel.shape[1]
 
     h_out = h - kh + 1
-    w_out = h - k + 1
+    w_out = h - kw + 1
 
     conv_images = np.zeros(m, h_out, w_out)
 
     for i in range(hfinal):
         for j in range(wfinal):
             output[:, j, i] = np.sum(np.multiply(images[:, i:kh+i, j:kw+j],
-                                      kernel), axis=(1, 2))
+                                                 kernel), axis=(1, 2))
     return (conv_images)
