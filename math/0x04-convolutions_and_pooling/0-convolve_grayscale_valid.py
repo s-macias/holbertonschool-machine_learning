@@ -2,7 +2,6 @@
 """ Module with convolve_grayscale_valid function """
 
 import numpy as np
-from math import ceil, floor
 
 
 def convolve_grayscale_valid(images, kernel):
@@ -23,17 +22,15 @@ def convolve_grayscale_valid(images, kernel):
     Returns:
     a numpy.ndarray containing the convolved images
     """
-    m, h = images.shape[0], images.shape[1]
-    w = images.shape[2]
+    m, h, w = images.shape[0], images.shape[1], images.shape[2]
     kh, kw = kernel.shape[0], kernel.shape[1]
 
-    h_out = h - kh + 1
-    w_out = h - kw + 1
+    h_out, w_out = h - kh + 1, h - kw + 1
 
     conv_images = np.zeros(m, h_out, w_out)
 
-    for i in range(hfinal):
-        for j in range(wfinal):
-            output[:, j, i] = np.sum(np.multiply(images[:, i:kh+i, j:kw+j],
+    for i in range(h_out):
+        for j in range(w_out):
+            output[:, i, j] = np.sum(np.multiply(images[:, i:kh+i, j:kw+j],
                                                  kernel), axis=(1, 2))
     return (conv_images)
